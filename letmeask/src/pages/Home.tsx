@@ -8,7 +8,7 @@ import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
 import '../styles/auth.scss'
-import { Button } from '../components/Button';
+import { Button } from '../components/Button/index';
 import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 
@@ -40,6 +40,10 @@ export function Home() {
         if(!roomRef.exists()){
             alert('Room does not exists');
             return;
+        }
+
+        if(roomRef.val().endedAt){
+            alert('Room already closed');
         }
 
         history.push(`/rooms/${roomCode}`);
